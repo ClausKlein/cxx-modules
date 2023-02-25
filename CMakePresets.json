@@ -1,0 +1,37 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "base",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_MAKE_PROGRAM":"/home/philip/dev/ninja/build-cmake/ninja",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        },
+        {
+            "name": "gcc",
+            "displayName": "gcc preset",
+            "description": "Sets gcc and ninja",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/home/philip/dev/gcc/gcc-install/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/home/philip/dev/gcc/gcc-install/bin/g++"
+            }
+        },
+        {
+            "name": "clang",
+            "displayName": "clang preset",
+            "description": "Sets clang and ninja",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/home/philip/dev/llvm-project/build/bin/clang",
+                "CMAKE_CXX_COMPILER": "/home/philip/dev/llvm-project/build/bin/clang++",
+                "CMAKE_CXX_FLAGS": "--gcc-toolchain=/home/philip/dev/gcc/gcc-install"
+            }
+        }
+    ]
+}
