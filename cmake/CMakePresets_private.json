@@ -11,7 +11,14 @@
                 "CMAKE_MAKE_PROGRAM":"/home/philip/dev/ninja/build-cmake/ninja",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": true
             }
-        },
+        }, 
+        {
+         "name": "msvc",
+         "displayName": "msvc preset",
+         "description": "Sets msvc and and vs generator",
+         "generator": "Visual Studio 17 2022",
+         "inherits": "base"
+         },
         {
             "name": "gcc",
             "displayName": "gcc preset",
@@ -19,7 +26,8 @@
             "inherits": "base",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "/home/philip/dev/gcc/gcc-install/bin/gcc",
-                "CMAKE_CXX_COMPILER": "/home/philip/dev/gcc/gcc-install/bin/g++"
+                "CMAKE_CXX_COMPILER": "/home/philip/dev/gcc/gcc-install/bin/g++",
+                "CMAKE_MAKE_PROGRAM":"/home/philip/dev/ninja/build-cmake/ninja",
             }
         },
         {
@@ -30,7 +38,8 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "/home/philip/dev/llvm-project/build/bin/clang",
                 "CMAKE_CXX_COMPILER": "/home/philip/dev/llvm-project/build/bin/clang++",
-                "CMAKE_CXX_FLAGS": "--gcc-toolchain=/home/philip/dev/gcc/gcc-install"
+                "CMAKE_CXX_FLAGS": "--gcc-toolchain=/home/philip/dev/gcc/gcc-install",
+                "CMAKE_MAKE_PROGRAM":"/home/philip/dev/ninja/build-cmake/ninja"
             }
         }
     ]

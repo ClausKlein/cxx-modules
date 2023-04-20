@@ -1,0 +1,45 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "base",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        }, 
+        {
+         "name": "msvc",
+         "displayName": "msvc preset",
+         "description": "Sets msvc and and vs generator",
+         "generator": "Visual Studio 17 2022",
+         "inherits": "base"
+         },
+        {
+            "name": "gcc",
+            "displayName": "gcc preset",
+            "description": "Sets gcc and ninja",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "<pathTo>/gcc",
+                "CMAKE_CXX_COMPILER": "<pathTo>/g++",
+                "CMAKE_MAKE_PROGRAM":"<pathToNinja>/ninja"
+            }
+        },
+        {
+            "name": "clang",
+            "displayName": "clang preset",
+            "description": "Sets clang and ninja",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "<pathTo>/clang",
+                "CMAKE_CXX_COMPILER": "<pathTo>/clang++",
+                "CMAKE_CXX_FLAGS": "--gcc-toolchain=<pathTogcc-install>/gcc-install", //I needed to use to use the gcc std-lib as the libc++ did not work for me
+                "CMAKE_MAKE_PROGRAM":"<pathTo>/ninja"
+            }
+        }
+    ]
+}
