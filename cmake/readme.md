@@ -9,9 +9,10 @@ I will briefly describe to use this working cmake project which is able to use C
   - MSVC since v19.34
   - Clang 16.0.1
   - GCC not upstream, a patched version is [here](https://github.com/mathstuf/gcc/tree/p1689r5)
-     - If you're using gcc clone the linked repos, checkout the according tag and build it.
-- You need in Ninja in Version 1.11 or newer
+     - If you're using gcc: clone the linked repo, checkout the according tag and build it.
+- You need Ninja in Version 1.11 or newer
   - Install or build from source
+ -If you are on windows you can also use the VS2022 Generator
 - Adjust the provided CMakePresets file with your paths for the compiler and ninja
 - If you followed all the steps you should be able to run:
 
@@ -25,7 +26,7 @@ cd out/build/<presetName>
 Modules support in CMake is experimental at the moment. So you have to do a couple of things to enable.
 - Setting `CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API` enables the "experimental" feature for c++ modules
 - Setting `CMAKE_EXPERIMENTAL_CXX_MODULE_DYNDEP` enables dynamic dependencies mode
-- The following snippet tells cmake how to scan the dynamic dependencies for gcc and clang in order to use the correct compile order. As MSVC did implement this a small while cmake, implemented this functionality already upstream
+- The following snippet includes cmake macro which then tell cmake how to scan the dynamic dependencies for gcc and clang in order to use the correct compile order. As MSVC did implement this a small while ago, cmake implemented the functionality for MSVC already upstream
 ```
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   include(cmake/clang_modules.cmake)
