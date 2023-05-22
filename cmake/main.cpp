@@ -1,15 +1,15 @@
 import idc;
-import helper
+import helper;
 
 int main()
 {
     Idc idc;
     idc.welcome();
-    
-    if(divide(100.0 / 2.3) > 42)
+
+    if(divide(100.0, 2.3) > 42)
     {
-      idc.interact_with_audience();
+        idc.interact_with_audience();
     }
-        
+
     return 0;
 }
