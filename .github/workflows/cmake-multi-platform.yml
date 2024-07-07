@@ -131,4 +131,4 @@ jobs:
         shell: bash
         run: |
           source .venv/bin/activate
-          cmake --workflow --preset dev
+          cd cmake && cmake --workflow --preset dev
