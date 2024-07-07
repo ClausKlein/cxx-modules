@@ -26,9 +26,12 @@ jobs:
         os:
           - macos-14
           - ubuntu-24.04
-          # - windows-latest
+          # XXX - windows-latest
         build_type: [Release]
-        c_compiler: [gcc-14, clang-18, cl]
+        c_compiler:
+          - gcc-14
+          - clang-18
+          # XXX - cl
         include:
           # - os: windows-latest
           #   c_compiler: cl
@@ -37,6 +40,12 @@ jobs:
             c_compiler: gcc-14
             cpp_compiler: g++-14
           - os: ubuntu-24.04
+            c_compiler: clang-18
+            cpp_compiler: clang++-18
+          - os: macos-14
+            c_compiler: gcc-14
+            cpp_compiler: g++-14
+          - os: macos-14
             c_compiler: clang-18
             cpp_compiler: clang++-18
         exclude:
