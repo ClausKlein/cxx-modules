@@ -7,18 +7,18 @@
   },
   "configurePresets": [
     {
-      "name": "dev",
-      "displayName": "Ninja build on unix with Release",
+      "name": "default",
+      "displayName": "Ninja Multi-Config build gcc",
       "inherits": [
         "gcc"
       ],
-      "generator": "Ninja"
+      "generator": "Ninja Multi-Config"
     }
   ],
   "buildPresets": [
     {
-      "name": "dev",
-      "configurePreset": "dev",
+      "name": "default",
+      "configurePreset": "default",
       "configuration": "Release",
       "targets": [
         "all"
@@ -27,8 +27,8 @@
   ],
   "testPresets": [
     {
-      "name": "dev",
-      "configurePreset": "dev",
+      "name": "default",
+      "configurePreset": "default",
       "configuration": "Release",
       "output": {
         "outputOnFailure": true
@@ -37,19 +37,19 @@
   ],
   "workflowPresets": [
     {
-      "name": "dev",
+      "name": "default",
       "steps": [
         {
           "type": "configure",
-          "name": "dev"
+          "name": "default"
         },
         {
           "type": "build",
-          "name": "dev"
+          "name": "default"
         },
         {
           "type": "test",
-          "name": "dev"
+          "name": "default"
         }
       ]
     }

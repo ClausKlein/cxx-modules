@@ -7,11 +7,10 @@
             "hidden": true,
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": true,
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/stagedir",
-                "CMAKE_PREFIX_PATH": "${sourceDir}/out/stagedir",
-                "CMAKE_MAKE_PROGRAM": "/usr/local/bin/ninja"
+                "CMAKE_PREFIX_PATH": "${sourceDir}/out/stagedir"
             }
         },
         {
@@ -27,8 +26,8 @@
             "description": "Sets gcc and ninja",
             "inherits": "base",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "/usr/local/bin/gcc-14",
-                "CMAKE_CXX_COMPILER": "/usr/local/bin/g++-14"
+                "CMAKE_C_COMPILER": "gcc-14",
+                "CMAKE_CXX_COMPILER": "g++-14"
             }
         },
         {
@@ -37,8 +36,8 @@
             "description": "Sets clang and ninja",
             "inherits": "base",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "/usr/local/opt/llvm/bin/clang",
-                "CMAKE_CXX_COMPILER": "/usr/local/opt/llvm/bin/clang++",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++",
                 "CMAKE_CXX_LDFLAGS": "-L/usr/local/opt/llvm/lib/c++"
             }
         }
