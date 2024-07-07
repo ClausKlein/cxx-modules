@@ -4,29 +4,31 @@
         {
             "name": "base",
             "generator": "Ninja",
+            "hidden": true,
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/stagedir",
+                "CMAKE_PREFIX_PATH": "${sourceDir}/out/stagedir",
+                "CMAKE_MAKE_PROGRAM": "/usr/local/bin/ninja"
             }
-        }, 
+        },
         {
-         "name": "msvc",
-         "displayName": "msvc preset",
-         "description": "Sets msvc and and vs generator",
-         "generator": "Visual Studio 17 2022",
-         "inherits": "base"
-         },
+            "name": "msvc",
+            "displayName": "msvc preset",
+            "description": "Sets msvc and and vs generator",
+            "generator": "Visual Studio 17 2022",
+            "inherits": "base"
+        },
         {
             "name": "gcc",
             "displayName": "gcc preset",
             "description": "Sets gcc and ninja",
             "inherits": "base",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "<pathTo>/gcc",
-                "CMAKE_CXX_COMPILER": "<pathTo>/g++",
-                "CMAKE_MAKE_PROGRAM":"<pathToNinja>/ninja"
+                "CMAKE_C_COMPILER": "/usr/local/bin/gcc-14",
+                "CMAKE_CXX_COMPILER": "/usr/local/bin/g++-14"
             }
         },
         {
@@ -35,10 +37,9 @@
             "description": "Sets clang and ninja",
             "inherits": "base",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "<pathTo>/clang",
-                "CMAKE_CXX_COMPILER": "<pathTo>/clang++",
-                "CMAKE_CXX_FLAGS": "--gcc-toolchain=<pathTogcc-install>/gcc-install", //I needed to use to use the gcc std-lib as the libc++ did not work for me
-                "CMAKE_MAKE_PROGRAM":"<pathTo>/ninja"
+                "CMAKE_C_COMPILER": "/usr/local/opt/llvm/bin/clang",
+                "CMAKE_CXX_COMPILER": "/usr/local/opt/llvm/bin/clang++",
+                "CMAKE_CXX_LDFLAGS": "-L/usr/local/opt/llvm/lib/c++"
             }
         }
     ]

@@ -1,0 +1,32 @@
+@PACKAGE_INIT@
+
+if (NOT TARGET idc::idc)
+  include(${CMAKE_CURRENT_LIST_DIR}/@targets_export_name@.cmake)
+endif ()
+
+check_required_components(idc)
+
+function(add_idc_module NAME)
+    set(IDC_ROOT @CMAKE_INSTALL_PREFIX@)
+    message(STATUS "IDC_ROOT is: ${IDC_ROOT}")
+    add_library(${NAME})
+    target_include_directories(${NAME} PUBLIC ${IDC_ROOT}/include)
+    target_compile_features(${NAME} PUBLIC cxx_std_20)
+    target_compile_options(${NAME} PRIVATE -Wno-include-angled-in-module-purview
+                                           -Wno-unknown-warning-option
+    )
+
+    if (DEFINED CPPdefinitions)
+        target_compile_definitions(${NAME} PUBLIC ${CPPdefinitions})
+    endif ()
+
+    # cmake-format: off
+    target_sources(${NAME} PUBLIC
+        FILE_SET modules_public TYPE
+        CXX_MODULES BASE_DIRS ${IDC_ROOT}
+        FILES
+            ${IDC_ROOT}/include/idc/modules/idc.cppm
+            ${IDC_ROOT}/include/idc/modules/helper.cppm
+    )
+    # cmake-format: on
+endfunction()
